@@ -5,14 +5,11 @@ int main() {
     printf("Enter number of processes: ");
     scanf("%d", &n);
 
-    int bt[n], ct[n], wt[n], tat[n];
-    char pid[n][5];
+    int bt[n], ct[n], tat[n], wt[n];
 
     // Input burst times
     for(i = 0; i < n; i++) {
-        printf("Enter Process ID for process %d: ", i + 1);
-        scanf("%s", pid[i]);
-        printf("Enter Burst Time for %s: ", pid[i]);
+        printf("Enter Burst Time for Process P%d: ", i + 1);
         scanf("%d", &bt[i]);
     }
 
@@ -24,21 +21,21 @@ int main() {
 
     // Calculate Turnaround Time and Waiting Time
     for(i = 0; i < n; i++) {
-        tat[i] = ct[i];
-        wt[i] = tat[i] - bt[i];
+        tat[i] = ct[i];           // TAT = CT - AT, AT = 0
+        wt[i] = tat[i] - bt[i];   // WT = TAT - BT
     }
 
-    // Display results
+    // Display table
     printf("\nProcess\tBT\tCT\tTAT\tWT\n");
     for(i = 0; i < n; i++) {
-        printf("%s\t%d\t%d\t%d\t%d\n", pid[i], bt[i], ct[i], tat[i], wt[i]);
+        printf("P%d\t%d\t%d\t%d\t%d\n", i+1, bt[i], ct[i], tat[i], wt[i]);
     }
 
     // Gantt Chart
     printf("\nGantt Chart:\n");
     printf("|");
     for(i = 0; i < n; i++) {
-        printf("  %s  |", pid[i]);
+        printf("  P%d  |", i+1);
     }
 
     printf("\n0");
@@ -48,3 +45,4 @@ int main() {
 
     return 0;
 }
+
